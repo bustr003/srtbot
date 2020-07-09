@@ -1,0 +1,101 @@
+This video shows the steps taken to erase a node in the middle of a LinkedSequence object.
+
+
+In this example, we want to remove the node of 76.
+
+
+ This can be done by setting the next pointer of the node 95 to point at the node of 85.
+
+
+Therefore, we need to first get a hold of the node 95, which is at pos - 1.
+
+
+We have set up two variables.
+
+
+ptr is a pointer variable, pointing to a Node object.
+
+
+The index variable tracks the position of the node pointed by ptr.
+
+
+Before the loop ptr points to the first node, index is 0.
+
+
+The two statements in the loop are to move ptr down to its next node and increase index by 1.
+
+
+When we move ptr to the node of 67, index becomes 1.
+
+
+When ptr points to the node of 93, index is 2.
+
+
+The question is what loop condition we should use to help us move ptr to the node of 95.
+
+
+To help us figure that out, let’s first experiment with the condition of index less than 2 to see how far we could move ptr.
+
+
+At the beginning, index is 0, 0 less than 2 is true.
+
+
+The loop body is executed, changing ptr to the node of 67 and index to 1.
+
+
+Since 1 less than 2 is true, the loop body is executed again, changing ptr to the node of 93 and index to 2.
+
+
+Now 2 less than 2 is false, the loop stops.
+
+
+Therefore, using the condition of index less than 2 helps us move ptr to the node whose position in the sequence is 2.
+
+
+Pause the video and think about how we should set the loop condition if we want to move the pointer to the node of 95.
+
+
+Resume the video when you are ready.
+
+
+Yes, we will need to set the loop condition to index less than pos - 1.
+
+
+This will allow us to move ptr to a node at pos – 1 at the end of the loop.
+
+
+Now we are ready to connect the next data member for the node of 95 with the node of 85.
+
+
+Pause the video and think about how we can reach the node of 76 via the ptr variable.
+
+
+Resume the video when you are ready.
+
+
+Yes, ptr next  is pointing at the node of 76.
+
+
+Let’s use a new temporary pointer to point at this node. This will allow us to release the memory units associated with the node of 76 after it is removed from the sequence.
+
+
+This also allows us to reference the node of 85 as temp next.
+
+
+Pause the video and think about how we can connect the node of 95 with the node of 85. Resume the video when you are ready.
+
+
+Here is what we can do to by pass the node of 75.
+
+
+As a result, the node of 75 is no longer part of the sequence
+
+
+Pause the video and think about what important step we need to take next in order to prevent memory leak. Resume the video when you are ready.
+
+
+Yes, we need to release the memory units associated with the node of 75 using the delete operator. 
+
+
+Had we missed this step in our program, we would have caused a memory leak.
+
