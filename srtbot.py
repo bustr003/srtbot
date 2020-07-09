@@ -19,8 +19,7 @@ import srtbotFN
 #open the output file (to hold the transcript in SRT format)
 srt = open( 'sampleSRT.txt', 'w' ) #'w' means overwrite existing content
 
-#open the input file (the transcript)
-#create a list to hold each line
+#open the input file (the transcript) and create a list to hold each line
 transLines = srtbotFN.getFileLines( 'sampleTrans.txt' )
 
 srtbotFN.writeFileAsSRT( transLines, srt ) #write the transcript in SRT format
