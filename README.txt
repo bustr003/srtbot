@@ -48,7 +48,8 @@ List of functions
 ========= end of sampleTrans description =========
 
 ========= 4) FILE DESCRIPTION: sampleSRT.txt =========
-- The srtbot program will overrite this file.
+- The srtbot program will overwrite this file.
+- - e.g, It does not matter what is in this file before running srtbot.
 - Here, the transcript will appear in SRT format.
 - If some of the subtitles are too long to appear on a single line in the video,
 - - extra line breaks can be added to individual subtitles
