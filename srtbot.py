@@ -14,16 +14,39 @@ PROCEDURE:
 see 'README.txt' for ASSUMPTIONS and NOTES.
 '''
 
-import srtbotFN
+#OPENING STATEMENTS
+program = "SRTbot"
+print( '===' + program + '===' )
 
-#open the output file (to hold the transcript in SRT format)
-srt = open( 'sampleSRT.txt', 'w' ) #'w' means overwrite existing content
+#MODULES
+import time as t
+#custom modules
+import srtbotFN as fn
+
+#start timer
+t0 = t.time()
+
+#files to use
+infile = 'sampleTrans.txt'
+outfile = 'sampleSRT.txt'
 
 #open the input file (the transcript) and create a list to hold each line
-transLines = srtbotFN.getFileLines( 'sampleTrans.txt' )
+print( 'transcript will be read from', infile )
+transLines = fn.getFileLines( infile )
 
-srtbotFN.writeFileAsSRT( transLines, srt ) #write the transcript in SRT format
+#open the output file (to hold the transcript in SRT format)
+print( 'SRT will be written to', outfile )
+srt = open( outfile, 'w' ) #'w' means overwrite existing content
+
+#write the transcript in SRT format
+fn.writeFileAsSRT( transLines, srt )
 
 srt.close() #close the output file
-print( 'done. check the re-written \'sampleSRT.txt.\'' )
+print( 'DONE. check the re-written', outfile )
+
+#ENDING STATEMENTS
+t1 = t.time()
+print( 'time to run: ', t1-t0, ' seconds' )
+
+print( '===' + program + ' end===' )
 #EOF srtbot.py

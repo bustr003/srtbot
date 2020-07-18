@@ -16,7 +16,7 @@ PURPOSE: open a file and make a list of all lines
 PARAMETERS:
 - infileName: the name of the file to open
 RETURN VALUES:
-- fileLines: a list where each element is a line from the file
+- fileLines
 '''
 def getFileLines( infileName ):
     infile = open( infileName, 'r' )
@@ -26,35 +26,39 @@ def getFileLines( infileName ):
 #end of FN getFileLines
 
 '''
-FN2: writeLineAsSRT
-PURPOSE: write a line in srt format
+FN2: writeLine
+PURPOSE: print a line in srt format
 PARAMETERS:
 - lineNumber: the number of the line in the transcript
 - outfile: the file to write to
 - lineContent: one line of the transcript
 '''
 def writeLineAsSRT( lineNumber, outfile, lineContent ):
-    outfile.write( str(lineNumber) ) #line number == subtitle number
-    outfile.write( '\n00:00:00,000 --> 00:00:00,000\n' ) #timestamp HH:MM:SS,mmm
-    outfile.write( lineContent ) #the text to be displayed as a subtitle
+    outfile.write( str(lineNumber) ) #line number
+    outfile.write( '\n00:00:00,000 --> 00:00:00,000\n' ) #timestamp
+    outfile.write( lineContent )
     outfile.write( '\n' )
-#end of FN writeLineAsSRT
+#end of FN writeLines
 
 '''
-FN3: writeFileAsSRT
-PURPOSE: write a transcript in srt format
+FN3: writeSrtFormat
+PURPOSE: print a transcript in srt format
 PARAMETERS:
+- lineNumber: the number of the line in the transcript
 - outfile: the file to write to
-- infileContent: a list of each line in the input file
+- lineContent: one line of the transcript
 '''
 def writeFileAsSRT( infileContent, outfile ): 
-    lineNumber = 0 #the number of the line in the transcript
+    lineNumber = 0
     #for loop to print the input file line by line
     for lineContent in infileContent:
-        endl = re.search( '\n', lineContent ) #endline is at endl.start()
-        if endl.start() != 0:
+        line_end = re.search( '\Z|\n', lineContent ) #end of string is at string_end.start()
+        
+        #if the line is not just a blank line
+        if line_end.start() != 0:
             lineNumber += 1
             writeLineAsSRT( lineNumber, outfile, lineContent )
-#end of FN writeFileAsSRT
 
-#EOF srtbot.py
+#end of FN writeSrtFormat
+
+#EOF srtbotFN.py
