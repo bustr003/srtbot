@@ -3,14 +3,20 @@
 
 === srtbotFN.py ===
 '''
-FN: srtWrite
-PURPOSE: simple test of the write function
-PARAMETERS:
-- outfile: the file to write to
-'''
-'''
 def srtWrite( outfile ):
     outfile.write( '1\n00:00:00,000 --> 00:00:00,000' )
+'''
+
+'''
+def writeFileAsSRT( infileContent, outfileName ): 
+    lineNumber = 0
+    #for loop to print the input file line by line
+    for lineContent in infileContent:
+        endl = re.search( '\n', lineContent ) #endline is at endl.start()
+        if endl.start() != 0:
+            lineNumber += 1
+            writeLineAsSRT( lineNumber, outfileName, lineContent )
+#end of FN writeSrtFormat
 '''
 
 === srtbot.py ===
